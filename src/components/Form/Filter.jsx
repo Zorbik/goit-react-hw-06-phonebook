@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { Input, Label } from '../../components';
-import { update } from '../../redux/filterSlice';
+import { changeSearchQuery } from '../../redux/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
   const onChangeInput = e => {
-    dispatch(update(e.target.value));
+    dispatch(changeSearchQuery(e.target.value));
   };
 
   return (

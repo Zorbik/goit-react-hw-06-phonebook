@@ -3,12 +3,13 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input, Label, Button } from '../../components';
 import { addContact } from '../../redux/contactsSlice';
+import { getContacts } from '../../redux/selectors';
 
 export const FormInputContact = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const state = useSelector(state => state.contacts.value);
+  const stateContacts = useSelector(getContacts);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -24,7 +25,9 @@ export const FormInputContact = () => {
     e.preventDefault();
 
     if (
-      state.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+      stateContacts?.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
     ) {
       alert(`${name} is alredy in contacts!`);
     } else {

@@ -6,9 +6,10 @@ import {
   ContactsList,
   Filter,
 } from './components';
+import { getContacts } from './redux/selectors';
 
 function App() {
-  const state = useSelector(state => state.contacts.value);
+  const stateContacts = useSelector(getContacts);
 
   return (
     <Box width="px" mx="auto" my={5} p={4} boxShadow="normal">
@@ -16,7 +17,7 @@ function App() {
         <FormInputContact />
       </Section>
       <Section title="Contacts">
-        {state.length ? <Filter /> : ''}
+        {stateContacts?.length ? <Filter /> : ''}
         <ContactsList />
       </Section>
     </Box>

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import { Box, Contact } from '../../components';
+import { getContacts, getFilter } from '../../redux/selectors';
 
 export function ContactsList() {
-  const stateContacts = useSelector(state => state.contacts.value);
-  const stateFilter = useSelector(state => state.filter.value);
+  const stateContacts = useSelector(getContacts);
+  const stateFilter = useSelector(getFilter);
 
   const getVisibleContacts = () => {
     const normalizedFilter = stateFilter.toLowerCase().trim();
