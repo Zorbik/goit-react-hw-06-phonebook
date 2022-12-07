@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Input, Label } from '../../components';
-import { changeSearchQuery } from '../../redux/filterSlice';
+import { changeSearchQuery } from '../../redux/phoneBookSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

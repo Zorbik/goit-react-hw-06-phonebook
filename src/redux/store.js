@@ -8,10 +8,23 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { contactsReduser } from './contactsSlice';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { phoneBookSlice } from './phoneBookSlice';
 
-export const store = configureStore({
-  reducer: contactsReduser,
+const persistConfig = {
+  key: ' phoneBook',
+  storage,
+  blacklist: ['filter'],
+};
+
+export const persistedPhoneBookReduser = persistReducer(
+  persistConfig,
+  phoneBookSlice.reducer
+);
+
+const store = configureStore({
+  reducer: persistedPhoneBookReduser,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -20,4 +33,5 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+export const persistedStore = persistStore(store);
+export default store;

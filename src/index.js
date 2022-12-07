@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, store } from './redux/store';
+import store, { persistedStore } from './redux/store';
 import { loader, theme } from './components';
 import App from './App';
 import './index.css';
@@ -11,7 +11,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={loader} persistor={persistor}>
+      <PersistGate loading={loader} persistor={persistedStore}>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
